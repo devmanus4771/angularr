@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp">
+
+<myangular></myangular>
+<myangular></myangular>
+</div>
+<script>
+    var app = angular.module('myApp', []);
+    app.directive("myangular",function(){
+var info = "AngularJS extends HTML with new attributes.";
+return {template : info};
+    });
+</script>
+</body>
+</html>

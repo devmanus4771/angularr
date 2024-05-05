@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
+    </script>
+   
+    <style>
+        body {
+            margin: 2%;
+            font-size: 120%;
+        }
+ 
+        th,
+        td {
+            padding: 20px;
+        }
+    </style>
+</head>
+ 
+<body ng-app="myApp" ng-controller="ListController">
+    <h1 style="color:green">GeeksforGeeks</h1>
+    <h3>Printing the array in the tabular format</h3>
+    <h4>Most Grand Slam Winners - Men Tennis</h4>
+    <table border=1>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Grand Slams</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="item in itemsDetails">
+            <td> {{item.sno}} </td>
+            <td> {{item.name}} </td>
+            <td> {{item.country}} </td>
+            <td> {{item.grandslams}} </td>
+            <td> {{item.active}} </td>
+        </tr>
+    </table>
+ 
+</body>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller(
+        'ListController', function ($scope) {
+            $scope.names=['ram','syam'];
+            $scope.itemsDetails = [{
+                sno: 1,
+                name: 'Roger Federer',
+                country: 'Switzerland',
+                grandslams: 20,
+                active: "Yes",
+            }, {
+                sno: 2,
+                name: 'Rafael Nadal',
+                country: 'Spain',
+                grandslams: 18,
+                active: "Yes",
+            }, {
+                sno: 3,
+                name: 'Novak Djokovic',
+                country: 'Serbia',
+                grandslams: 16,
+                active: "Yes",
+            }, {
+                sno: 4,
+                name: 'Pete Samprass',
+                country: 'USA',
+                grandslams: 14,
+                active: "No",
+            }, {
+                sno: 5,
+                name: 'Roy Emerson',
+                country: 'Australia',
+                grandslams: 12,
+                active: "No",
+            }
+ 
+            ];
+ 
+        });
+</script>
+</html>

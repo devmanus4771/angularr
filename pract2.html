@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+    <script>
+        function validateForm() {
+            var dob = document.getElementById('dob').value;
+            var joiningDate = document.getElementById('joiningDate').value;
+            var salary = parseFloat(document.getElementById('salary').value);
+
+            // Regular expression for date in format YYYY-MM-DD
+            var datePattern = /^\d{4}-\d{2}-\d{2}$/;
+
+            // Validate DOB
+            if (!dob.match(datePattern)) {
+                alert('Invalid Date of Birth. Please use the format YYYY-MM-DD');
+                return false;
+            }
+
+            // Validate Joining Date
+            if (!joiningDate.match(datePattern)) {
+                alert('Invalid Joining Date. Please use the format YYYY-MM-DD');
+                return false;
+            }
+
+            // Validate Salary
+            if (isNaN(salary) || salary <= 0) {
+                alert('Invalid Salary. Please enter a valid salary greater than 0');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Employee Registration Form</h1>
+    <form onsubmit="return validateForm()">
+        <label for="dob">Date of Birth:</label>
+        <input type="text" id="dob" name="dob" placeholder="YYYY-MM-DD" required><br><br>
+
+        <label for="joiningDate">Joining Date:</label>
+        <input type="text" id="joiningDate" name="joiningDate" placeholder="YYYY-MM-DD" required><br><br>
+
+        <label for="salary">Salary:</label>
+        <input type="text" id="salary" name="salary" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

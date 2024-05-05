@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="registrationApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="registrationCtrl">
+    <h1>Student Registration Form</h1>
+    <form name="registrationForm" novalidate>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" ng-model="student.firstName" ng-pattern="/^[a-zA-Z]*$/" required><br>
+        <span ng-show="registrationForm.firstName.$error.pattern">First name should contain only alphabets</span><br><br>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" ng-model="student.lastName" ng-pattern="/^[a-zA-Z]*$/" required><br>
+        <span ng-show="registrationForm.lastName.$error.pattern">Last name should contain only alphabets</span><br><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" ng-model="student.age" min="18" max="50" required><br>
+        <span ng-show="registrationForm.age.$error.min || registrationForm.age.$error.max">Age should be between 18 and 50</span><br><br>
+
+        <button type="submit" ng-click="register()" ng-disabled="registrationForm.$invalid">Register</button>
+    </form>
+    <p ng-show="greetingVisible">{{ greetingMessage }}</p>
+</body>
+<script>
+    var app = angular.module('registrationApp', []);
+
+app.controller('registrationCtrl', function($scope, $http) {
+    $scope.student = {};
+    $scope.greetingVisible = false;
+
+    $scope.register = function() {
+        // AJAX call to save student data (replace this with your actual API endpoint)
+        $http.post('./PracticalAngular', $scope.student)
+            .then(function(response) {
+                // If registration is successful, display greeting message
+                var currentTime = new Date().getHours();
+                if (currentTime < 12) {
+                    $scope.greetingMessage = 'Good Morning, ' + $scope.student.firstName + '!';
+                } else if (currentTime < 18) {
+                    $scope.greetingMessage = 'Good Afternoon, ' + $scope.student.firstName + '!';
+                } else {
+                    $scope.greetingMessage = 'Good Evening, ' + $scope.student.firstName + '!';
+                }
+                $scope.greetingVisible = true;
+            })
+            .catch(function(error) {
+                console.error('Error registering student:', error);
+            });
+    };
+});
+
+</script>
+</html>

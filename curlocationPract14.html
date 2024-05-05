@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="locationApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Current Location</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="locationCtrl">
+    <h1>Current Location</h1>
+    <p>The current location is: {{ currentLocation }}</p>
+</body>
+<script>
+    var app = angular.module('locationApp', []);
+
+app.controller('locationCtrl', function($scope, $location) {
+    $scope.currentLocation = $location.absUrl();
+});
+
+</script>
+</html>

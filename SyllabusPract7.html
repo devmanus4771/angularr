@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>MSc (CS) Semester II Syllabus</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <h1>MSc (CS) Semester II Syllabus</h1>
+    <div ng-view></div>
+    
+</body>
+
+<script>
+    var app = angular.module('myApp', ['ngRoute']);
+
+app.config(function($routeProvider) {
+    $routeProvider
+    .when('/', {
+        templateUrl: 'home.html',
+        controller: 'HomeController'
+    })
+    .when('/subjects', {
+        templateUrl: 'subjects.html',
+        controller: 'SubjectsController'
+    })
+    .otherwise({
+        redirectTo: '/'
+    });
+});
+
+app.controller('HomeController', function($scope) {
+    // Home page controller logic here
+});
+
+app.controller('SubjectsController', function($scope) {
+    // Subjects page controller logic here
+    // You can load syllabus content for all subjects here
+});
+
+</script>
+</html>
